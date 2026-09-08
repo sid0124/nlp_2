@@ -1,0 +1,78 @@
+
+Dashboard:  http://127.0.0.1:8000
+API docs:   http://127.0.0.1:8000/api/docs
+Health:     http://127.0.0.1:8000/api/health
+Serving run: scibert_han_v1 (SciBERT + Hierarchical Attention Network)
+
+Ctrl+C to stop.
+
+2026-09-09T00:13:29 | INFO    | run=20260908T184329Z-82be18 | src.api.app                  | api | serving dashboard from G:\sidharth\NLP_project\frontend
+2026-09-09T00:13:45 | WARNING | run=20260908T184329Z-82be18 | src.api.app                  | api | no API key required — correct for 127.0.0.1, wrong for anything reachable from another host. Set ARIS_API_KEY and security.require_api_key to enable.
+2026-09-09T00:13:46 | INFO    | run=20260908T184329Z-82be18 | src.api.app                  | api | serving run scibert_han_v1 (SciBERT + Hierarchical Attention Network, 4 classes)
+2026-09-09T00:13:46 | WARNING | run=20260908T184329Z-82be18 | src.api.app                  | api | run scibert_han_v1 was trained on the generated test corpus, not real papers. The dashboard labels this; do not read its metrics as results.
+INFO:     127.0.0.1:62289 - "GET / HTTP/1.1" 200 OK
+INFO:     127.0.0.1:62289 - "GET /css/app.css HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50962 - "GET /css/sidebar.css HTTP/1.1" 200 OK
+INFO:     127.0.0.1:58641 - "GET /js/analytics_pages.js HTTP/1.1" 200 OK
+INFO:     127.0.0.1:63958 - "GET /js/app.js HTTP/1.1" 200 OK
+INFO:     127.0.0.1:53656 - "GET / HTTP/1.1" 200 OK
+INFO:     127.0.0.1:53656 - "GET /css/app.css HTTP/1.1" 304 Not Modified
+INFO:     127.0.0.1:51579 - "GET /css/sidebar.css HTTP/1.1" 304 Not Modified
+INFO:     127.0.0.1:65006 - "GET /js/app.js HTTP/1.1" 200 OK
+INFO:     127.0.0.1:55839 - "GET /js/analytics_pages.js HTTP/1.1" 200 OK
+INFO:     127.0.0.1:65006 - "GET /js/api.js HTTP/1.1" 200 OK
+INFO:     127.0.0.1:56213 - "GET / HTTP/1.1" 200 OK
+INFO:     127.0.0.1:56213 - "GET /css/app.css HTTP/1.1" 304 Not Modified
+INFO:     127.0.0.1:54039 - "GET /css/sidebar.css HTTP/1.1" 304 Not Modified
+INFO:     127.0.0.1:54039 - "GET /js/app.js HTTP/1.1" 304 Not Modified
+INFO:     127.0.0.1:56213 - "GET /js/analytics_pages.js HTTP/1.1" 304 Not Modified
+INFO:     127.0.0.1:56213 - "GET /js/api.js HTTP/1.1" 304 Not Modified
+2026-09-09T00:50:26 | INFO    | run=20260908T184329Z-82be18 | src.training.dataset         | data | loaded {'train': 56, 'val': 12, 'test': 12} from G:\sidharth\NLP_project\data\processed (4 classes, mode=multiclass)
+INFO:     127.0.0.1:60904 - "GET /api/health HTTP/1.1" 200 OK
+2026-09-09T00:51:20 | WARNING | run=20260908T184329Z-82be18 | src.api.runstore             | api | could not load HAN model for scibert_han_v1: The 'transformers' package is not installed. Install it with: pip install -r requirements-ml.txt
+INFO:     127.0.0.1:60905 - "GET /api/meta HTTP/1.1" 200 OK
+2026-09-09T00:51:51 | INFO    | run=20260908T184329Z-82be18 | httpx                        | HTTP Request: HEAD https://huggingface.co/allenai/scibert_scivocab_uncased/resolve/main/config.json "HTTP/1.1 307 Temporary Redirect"
+2026-09-09T00:51:51 | WARNING | run=20260908T184329Z-82be18 | huggingface_hub.utils._http  | Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+2026-09-09T00:51:52 | INFO    | run=20260908T184329Z-82be18 | httpx                        | HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/allenai/scibert_scivocab_uncased/24f92d32b1bfb0bcaf9ab193ff3ad01e87732fc1/config.json?%2Fallenai%2Fscibert_scivocab_uncased%2Fresolve%2Fmain%2Fconfig.json=&etag=%22e7e5a29ad0904cb11c014ce669b56d07c19997cf%22 "HTTP/1.1 200 OK"
+2026-09-09T00:51:52 | INFO    | run=20260908T184329Z-82be18 | httpx                        | HTTP Request: HEAD https://huggingface.co/allenai/scibert_scivocab_uncased/resolve/main/tokenizer_config.json "HTTP/1.1 404 Not Found"
+2026-09-09T00:51:52 | INFO    | run=20260908T184329Z-82be18 | httpx                        | HTTP Request: HEAD https://huggingface.co/allenai/scibert_scivocab_uncased/resolve/main/tokenizer_config.json "HTTP/1.1 404 Not Found"
+2026-09-09T00:51:53 | INFO    | run=20260908T184329Z-82be18 | httpx                        | HTTP Request: GET https://huggingface.co/api/models/allenai/scibert_scivocab_uncased/tree/main/additional_chat_templates?recursive=false&expand=false "HTTP/1.1 404 Not Found"
+2026-09-09T00:51:53 | INFO    | run=20260908T184329Z-82be18 | httpx                        | HTTP Request: GET https://huggingface.co/api/models/allenai/scibert_scivocab_uncased/tree/main?recursive=true&expand=false "HTTP/1.1 200 OK"
+2026-09-09T00:51:53 | INFO    | run=20260908T184329Z-82be18 | httpx                        | HTTP Request: HEAD https://huggingface.co/allenai/scibert_scivocab_uncased/resolve/main/vocab.txt "HTTP/1.1 307 Temporary Redirect"
+2026-09-09T00:51:53 | INFO    | run=20260908T184329Z-82be18 | httpx                        | HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/allenai/scibert_scivocab_uncased/24f92d32b1bfb0bcaf9ab193ff3ad01e87732fc1/vocab.txt?%2Fallenai%2Fscibert_scivocab_uncased%2Fresolve%2Fmain%2Fvocab.txt=&etag=%228a2c6673dbaca55493a7449f60f0bf6c18a7e107%22 "HTTP/1.1 200 OK"
+2026-09-09T00:51:53 | INFO    | run=20260908T184329Z-82be18 | httpx                        | HTTP Request: HEAD https://huggingface.co/allenai/scibert_scivocab_uncased/resolve/main/config.json "HTTP/1.1 307 Temporary Redirect"
+2026-09-09T00:51:54 | INFO    | run=20260908T184329Z-82be18 | httpx                        | HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/allenai/scibert_scivocab_uncased/24f92d32b1bfb0bcaf9ab193ff3ad01e87732fc1/config.json?%2Fallenai%2Fscibert_scivocab_uncased%2Fresolve%2Fmain%2Fconfig.json=&etag=%22e7e5a29ad0904cb11c014ce669b56d07c19997cf%22 "HTTP/1.1 200 OK"
+2026-09-09T00:51:59 | INFO    | run=20260908T184329Z-82be18 | httpx                        | HTTP Request: HEAD https://huggingface.co/allenai/scibert_scivocab_uncased/resolve/main/model.safetensors "HTTP/1.1 404 Not Found"
+2026-09-09T00:52:00 | INFO    | run=- | httpx                        | HTTP Request: GET https://huggingface.co/api/models/allenai/scibert_scivocab_uncased "HTTP/1.1 200 OK"
+2026-09-09T00:52:00 | INFO    | run=- | httpx                        | HTTP Request: GET https://huggingface.co/api/models/allenai/scibert_scivocab_uncased/commits/main "HTTP/1.1 200 OK"
+2026-09-09T00:52:00 | INFO    | run=- | httpx                        | HTTP Request: GET https://huggingface.co/api/models/allenai/scibert_scivocab_uncased/discussions?p=0 "HTTP/1.1 200 OK"
+2026-09-09T00:52:01 | INFO    | run=20260908T184329Z-82be18 | src.models.transformer_embeddings | transformer | encoder=allenai/scibert_scivocab_uncased device=cpu pooling=mean max_seq=256
+2026-09-09T00:52:01 | INFO    | run=- | httpx                        | HTTP Request: GET https://huggingface.co/api/models/allenai/scibert_scivocab_uncased/commits/refs%2Fpr%2F7 "HTTP/1.1 200 OK"
+INFO:     127.0.0.1:58663 - "GET /api/meta HTTP/1.1" 200 OK
+2026-09-09T00:52:01 | INFO    | run=- | httpx                        | HTTP Request: HEAD https://huggingface.co/allenai/scibert_scivocab_uncased/resolve/refs%2Fpr%2F7/model.safetensors.index.json "HTTP/1.1 404 Not Found"
+2026-09-09T00:52:01 | INFO    | run=- | httpx                        | HTTP Request: HEAD https://huggingface.co/allenai/scibert_scivocab_uncased/resolve/refs%2Fpr%2F7/model.safetensors "HTTP/1.1 302 Found"
+INFO:     127.0.0.1:65156 - "GET / HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64341 - "GET / HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64341 - "GET /css/tokens.css HTTP/1.1" 200 OK
+INFO:     127.0.0.1:61933 - "GET /css/sidebar.css HTTP/1.1" 200 OK
+INFO:     127.0.0.1:61895 - "GET /css/analysis.css HTTP/1.1" 200 OK
+INFO:     127.0.0.1:51792 - "GET /css/app.css HTTP/1.1" 200 OK
+INFO:     127.0.0.1:59979 - "GET /js/analytics_pages.js HTTP/1.1" 200 OK
+INFO:     127.0.0.1:56790 - "GET /js/app.js HTTP/1.1" 200 OK
+INFO:     127.0.0.1:56790 - "GET /js/charts.js HTTP/1.1" 200 OK
+INFO:     127.0.0.1:59979 - "GET /js/domains.js HTTP/1.1" 200 OK
+INFO:     127.0.0.1:61895 - "GET /js/api.js HTTP/1.1" 200 OK
+INFO:     127.0.0.1:51792 - "GET /js/icons.js HTTP/1.1" 200 OK
+INFO:     127.0.0.1:61933 - "GET /js/nav.js HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64341 - "GET /js/analysis_page.js HTTP/1.1" 200 OK
+INFO:     127.0.0.1:56790 - "GET /js/sidebar.js HTTP/1.1" 200 OK
+INFO:     127.0.0.1:56790 - "GET /api/meta HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64341 - "GET /api/research/gaps HTTP/1.1" 200 OK
+INFO:     127.0.0.1:59979 - "GET /api/stats HTTP/1.1" 200 OK
+INFO:     127.0.0.1:51792 - "GET /api/research/trends HTTP/1.1" 200 OK
+INFO:     127.0.0.1:61895 - "GET /api/stats/domains HTTP/1.1" 200 OK
+INFO:     127.0.0.1:56790 - "GET /api/papers?needs_review=true&limit=1 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:61933 - "GET /api/papers?limit=1 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:61933 - "GET /favicon.ico HTTP/1.1" 404 Not Found
+INFO:     127.0.0.1:61933 - "GET /api/papers?limit=1 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:61933 - "GET /api/papers/S00002 HTTP/1.1" 200 OK

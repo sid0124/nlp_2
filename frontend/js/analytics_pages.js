@@ -29,9 +29,7 @@ import { icon } from "./icons.js";
 window.__arisAnalytics = {
   renderCitations,
   renderGaps: renderResearchGapsWorkspace,
-  renderMethodology: renderMethodologyExtractorWorkspace,
-  renderModelTracker: renderModelEvaluationWorkspace,
-  renderDatasetDiagnostics: renderDatasetProvenanceWorkspace,
+  renderMethodology,
 };
 
 let _cachedRuns = null;

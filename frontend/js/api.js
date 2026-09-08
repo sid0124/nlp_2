@@ -246,5 +246,5 @@ export const ask = (paperId, question) =>
 export const uploadPaper = (file) => {
   const data = new FormData();
   data.append("file", file);
-  return request("/papers/upload", { method: "POST", body: data });
+  return request("/papers/upload", { method: "POST", body: data, timeout: 120000 });
 };

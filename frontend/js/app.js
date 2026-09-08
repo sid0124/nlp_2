@@ -1809,6 +1809,8 @@ function openNavView(navId, label) {
       "Topic Modeling needs an embedding clustering backend, which is not " +
         "implemented in this build. The other analytics panels (research gaps, " +
         "methodology, citation network) are wired to live data.",
+      { title: label || navId },
+    );
   } else if (key === "roadmap" || key.includes("roadmap")) {
     const run = state.meta?.run;
     const sizes = run?.dataset?.split_sizes ?? {};
@@ -2194,10 +2196,19 @@ function wireInteractions() {
     const file = fileInput.files[0];
     if (!file) return;
 
-    statusDiv.innerHTML = '<span style="color: var(--accent-ink)">Parsing and indexing paper...</span>';
+    const submitBtn = $("#upload-submit");
+    if (submitBtn) {
+      submitBtn.disabled = true;
+      submitBtn.textContent = "Processing PDF & Classifying...";
+    }
+    statusDiv.innerHTML = '<span style="color: var(--accent-ink)">Extracting text sections & running neural classification... (may take up to 20s)</span>';
     try {
       const result = await uploadPaper(file);
       statusDiv.innerHTML = '<span style="color: #10b981">✓ Paper parsed and uploaded successfully!</span>';
+      if (submitBtn) {
+        submitBtn.disabled = false;
+        submitBtn.textContent = "Parse & Upload Paper";
+      }
       setTimeout(() => {
         uploadModal.close();
         statusDiv.innerHTML = "";
@@ -2209,6 +2220,10 @@ function wireInteractions() {
       }, 1000);
     } catch (err) {
       statusDiv.innerHTML = `<span style="color: #ef4444">Error: ${escapeHtml(err.message)}</span>`;
+      if (submitBtn) {
+        submitBtn.disabled = false;
+        submitBtn.textContent = "Parse & Upload Paper";
+      }
     }
   });
 
