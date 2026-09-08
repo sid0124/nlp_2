@@ -1,0 +1,46 @@
+# Research Dataset + Reproducible Baseline
+# Supports Python >= 3.11 (3.11 - 3.13 tested). Pins are minimums so the set
+# resolves on every supported interpreter; run `pip freeze > requirements-lock.txt`
+# for an exact lock of a known-good environment.
+#
+# Neural dependencies (PyTorch, SciBERT, HAN) are kept separate so a baseline-only
+# install stays light — see requirements-ml.txt:
+#     pip install -r requirements-ml.txt [--index-url https://download.pytorch.org/whl/cpu]
+# =============================================================================
+
+# --- Core scientific stack ---
+# numpy >= 2.1 is required on Python 3.13 (1.26.x has no cp313 wheels).
+numpy>=1.26.4
+scipy>=1.13.1
+pandas>=2.2.2
+scikit-learn>=1.5.1
+
+# --- Visualization (confusion matrix, class distribution) ---
+matplotlib>=3.9.2
+seaborn>=0.13.2
+
+# --- Configuration & typed schemas ---
+pydantic>=2.8.2
+pydantic-settings>=2.4.0
+python-dotenv>=1.0.1
+PyYAML>=6.0.2
+
+# --- HTTP client for OpenAlex ingestion ---
+requests>=2.32.3
+
+# --- Model persistence & progress bars ---
+joblib>=1.4.2
+tqdm>=4.66.5
+
+# --- PDF parsing (uploaded papers; required by scripts/serve_api.py) ---
+pypdf>=4.3.1
+
+# --- API server (scripts/serve_api.py; the dashboard's backend) ---
+fastapi>=0.115.0
+uvicorn>=0.30.0
+python-multipart>=0.0.9
+
+# --- Testing & linting ---
+pytest>=8.3.2
+ruff>=0.6.9
+httpx>=0.27.0

@@ -1,0 +1,611 @@
+﻿/* ==========================================================================
+   Research Workspace Sidebar — extended styles
+   ==========================================================================
+   Extends app.css for the new Research Workspace sidebar components.
+   All values use tokens from tokens.css. No raw colours.
+   ========================================================================== */
+
+/* --------------------------------------------------------------------------
+   Sidebar minimized (icon-only) mode
+   -------------------------------------------------------------------------- */
+
+.sidebar--minimized {
+  --sidebar-w: 58px;
+  width: var(--sidebar-w);
+}
+
+.sidebar--minimized .ws-project-btn,
+.sidebar--minimized .ws-project-btn__inner,
+.sidebar--minimized .ws-run-row,
+.sidebar--minimized .ws-brand__name,
+.sidebar--minimized .ws-progress,
+.sidebar--minimized .nav-group__header,
+.sidebar--minimized .nav-item__label,
+.sidebar--minimized .nav-badge,
+.sidebar--minimized .next-action,
+.sidebar--minimized .sidebar-toggle-btn .sr-text {
+  display: none;
+}
+
+.sidebar--minimized .nav-group__body {
+  display: block !important; /* always show icons in collapsed mode */
+}
+
+.sidebar--minimized .nav-group__body[hidden] {
+  display: block !important;
+}
+
+.sidebar--minimized .nav-item {
+  justify-content: center;
+  padding: var(--sp-2);
+}
+
+.sidebar--minimized .nav-item:hover::after {
+  content: attr(data-nav-label);
+  position: fixed;
+  left: 64px;
+  z-index: 200;
+  padding: 4px 10px;
+  background: var(--bg-raised);
+  border: 1px solid var(--border-strong);
+  border-radius: var(--r-sm);
+  font-size: var(--fs-sm);
+  color: var(--text-primary);
+  white-space: nowrap;
+  pointer-events: none;
+  box-shadow: var(--shadow-pop);
+}
+
+/* --------------------------------------------------------------------------
+   Shell adjustment when sidebar is minimized
+   -------------------------------------------------------------------------- */
+
+.shell:has(.sidebar--minimized) {
+  grid-template-columns: 58px 1fr;
+}
+
+/* --------------------------------------------------------------------------
+   Workspace header
+   -------------------------------------------------------------------------- */
+
+.ws-header {
+  flex-shrink: 0;
+  padding: var(--sp-4) var(--sp-4) var(--sp-3);
+  border-bottom: 1px solid var(--border);
+}
+
+.ws-header__top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: var(--sp-3);
+}
+
+.ws-brand {
+  display: flex;
+  align-items: center;
+  gap: var(--sp-2);
+}
+
+.ws-brand__mark {
+  display: grid;
+  place-items: center;
+  width: 28px;
+  height: 28px;
+  border-radius: var(--r-md);
+  background: var(--accent-gradient);
+  color: #fff;
+  flex-shrink: 0;
+}
+
+.ws-brand__name {
+  font-size: var(--fs-sm);
+  font-weight: 700;
+  letter-spacing: -0.01em;
+  color: var(--text-primary);
+}
+
+/* Sidebar collapse toggle button */
+.sidebar-toggle-btn {
+  display: grid;
+  place-items: center;
+  width: 26px;
+  height: 26px;
+  border-radius: var(--r-sm);
+  color: var(--text-muted);
+  transition: background 0.12s, color 0.12s;
+  flex-shrink: 0;
+}
+
+.sidebar-toggle-btn:hover {
+  color: var(--text-primary);
+  background: var(--bg-raised);
+}
+
+/* Project button */
+.ws-project-btn {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  padding: var(--sp-2) var(--sp-3);
+  background: var(--bg-raised);
+  border: 1px solid var(--border);
+  border-radius: var(--r-md);
+  text-align: left;
+  transition: border-color 0.12s, background 0.12s;
+  cursor: pointer;
+  margin-bottom: var(--sp-2);
+}
+
+.ws-project-btn:hover {
+  border-color: var(--border-strong);
+  background: var(--bg-inset);
+}
+
+.ws-project-btn__inner {
+  display: flex;
+  flex-direction: column;
+  gap: 1px;
+  min-width: 0;
+}
+
+.ws-project-name {
+  font-size: var(--fs-sm);
+  font-weight: 600;
+  color: var(--text-primary);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.ws-project-sub {
+  font-size: var(--fs-xs);
+  color: var(--text-muted);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.ws-project-btn__chevron {
+  flex-shrink: 0;
+  color: var(--text-muted);
+}
+
+/* Run status strip */
+.ws-run-row {
+  display: flex;
+  align-items: center;
+  gap: var(--sp-2);
+  padding: 0 var(--sp-1);
+}
+
+.ws-dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+.ws-dot--good     { background: var(--status-good); }
+.ws-dot--warn     { background: var(--status-warning); }
+.ws-dot--critical { background: var(--status-critical); }
+
+.ws-run-label {
+  flex: 1;
+  font-size: var(--fs-xs);
+  color: var(--text-secondary);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.ws-run-status {
+  font-size: var(--fs-xs);
+  color: var(--text-muted);
+  flex-shrink: 0;
+}
+
+/* --------------------------------------------------------------------------
+   Workspace picker popup
+   -------------------------------------------------------------------------- */
+
+.ws-picker {
+  position: fixed;
+  z-index: 300;
+  width: 260px;
+  background: var(--bg-surface);
+  border: 1px solid var(--border-strong);
+  border-radius: var(--r-lg);
+  box-shadow: var(--shadow-pop);
+  overflow: hidden;
+}
+
+.ws-picker__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: var(--sp-3) var(--sp-4);
+  border-bottom: 1px solid var(--border);
+}
+
+.ws-picker__title {
+  font-size: var(--fs-sm);
+  font-weight: 600;
+  color: var(--text-primary);
+}
+
+.ws-picker__close {
+  font-size: 18px;
+  color: var(--text-muted);
+  line-height: 1;
+}
+
+.ws-picker__close:hover { color: var(--text-primary); }
+
+.ws-picker__body {
+  padding: var(--sp-3) var(--sp-4);
+}
+
+.ws-picker__section-label {
+  font-size: var(--fs-xs);
+  font-weight: 600;
+  letter-spacing: 0.07em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  margin-bottom: var(--sp-2);
+}
+
+.ws-picker__item {
+  display: flex;
+  align-items: center;
+  gap: var(--sp-2);
+  padding: var(--sp-2) var(--sp-3);
+  border-radius: var(--r-md);
+  font-size: var(--fs-sm);
+  color: var(--text-secondary);
+  cursor: pointer;
+}
+
+.ws-picker__item--active {
+  background: var(--accent-wash);
+  color: var(--accent-ink);
+  font-weight: 600;
+}
+
+.ws-picker__note {
+  font-size: var(--fs-xs);
+  color: var(--text-muted);
+  padding: var(--sp-2) var(--sp-1);
+  font-style: italic;
+}
+
+.ws-picker__footer {
+  display: flex;
+  flex-direction: column;
+  gap: var(--sp-1);
+  margin-top: var(--sp-3);
+  padding-top: var(--sp-3);
+  border-top: 1px solid var(--border);
+}
+
+.ws-picker__new {
+  display: flex;
+  align-items: center;
+  gap: var(--sp-2);
+  padding: var(--sp-2) var(--sp-3);
+  border-radius: var(--r-md);
+  font-size: var(--fs-sm);
+  color: var(--text-secondary);
+  transition: background 0.12s, color 0.12s;
+}
+
+.ws-picker__new:not(:disabled):hover {
+  background: var(--bg-raised);
+  color: var(--text-primary);
+}
+
+.ws-picker__new:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+}
+
+/* --------------------------------------------------------------------------
+   Project progress
+   -------------------------------------------------------------------------- */
+
+.ws-progress {
+  padding: var(--sp-3) var(--sp-4);
+  border-bottom: 1px solid var(--border);
+}
+
+.ws-progress__toggle {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  gap: var(--sp-2);
+  text-align: left;
+  margin-bottom: var(--sp-2);
+}
+
+.ws-progress__title {
+  flex: 1;
+  font-size: var(--fs-xs);
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+}
+
+.ws-progress__frac {
+  font-size: var(--fs-xs);
+  font-weight: 600;
+  color: var(--accent-ink);
+  font-variant-numeric: tabular-nums;
+}
+
+.ws-progress__caret {
+  color: var(--text-muted);
+  transition: transform 0.15s;
+  flex-shrink: 0;
+}
+
+.ws-progress__caret--open {
+  transform: rotate(180deg);
+}
+
+/* Progress bar track */
+.prog-bar {
+  height: 5px;
+  background: var(--track);
+  border-radius: var(--r-pill);
+  overflow: hidden;
+}
+
+.prog-bar__fill {
+  height: 100%;
+  background: var(--accent-gradient);
+  border-radius: var(--r-pill);
+  transition: width 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Objective list */
+.ws-progress__detail {
+  margin-top: var(--sp-3);
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.prog-obj {
+  display: flex;
+  align-items: center;
+  gap: var(--sp-2);
+  font-size: var(--fs-xs);
+  color: var(--text-muted);
+}
+
+.prog-obj--done {
+  color: var(--text-secondary);
+}
+
+.prog-obj__icon {
+  display: grid;
+  place-items: center;
+  width: 14px;
+  height: 14px;
+  flex-shrink: 0;
+  color: var(--text-muted);
+}
+
+.prog-obj--done .prog-obj__icon {
+  color: var(--status-good-ink);
+}
+
+/* --------------------------------------------------------------------------
+   Nav groups — extended for collapsible headers
+   -------------------------------------------------------------------------- */
+
+.nav-group__header {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  padding: var(--sp-1) var(--sp-3) var(--sp-2);
+  gap: var(--sp-2);
+  text-align: left;
+  transition: color 0.12s;
+}
+
+.nav-group__header:hover .nav-group__label {
+  color: var(--text-secondary);
+}
+
+/* Override the old static label style */
+.nav-group__label {
+  flex: 1;
+  font-size: var(--fs-xs);
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  padding: 0; /* override app.css padding */
+}
+
+.nav-group__caret {
+  color: var(--text-muted);
+  transition: transform 0.15s;
+  flex-shrink: 0;
+}
+
+.nav-group__caret--open {
+  transform: rotate(180deg);
+}
+
+.nav-group__body {
+  /* No extra padding — nav-item already has its own */
+}
+
+/* --------------------------------------------------------------------------
+   Nav item extensions
+   -------------------------------------------------------------------------- */
+
+.nav-item {
+  position: relative;
+}
+
+.nav-item--active {
+  color: var(--accent-ink) !important;
+  background: var(--accent-wash) !important;
+  font-weight: 600;
+}
+
+.nav-item--active svg {
+  opacity: 1;
+}
+
+.nav-item__label {
+  flex: 1;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* Badge pills */
+.nav-badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 18px;
+  height: 18px;
+  padding: 0 5px;
+  border-radius: var(--r-pill);
+  font-size: 10px;
+  font-weight: 700;
+  line-height: 1;
+  background: var(--bg-raised);
+  color: var(--text-secondary);
+  border: 1px solid var(--border);
+  flex-shrink: 0;
+}
+
+.nav-badge--warn {
+  background: rgba(250, 178, 25, 0.15);
+  color: var(--status-warning-ink);
+  border-color: rgba(250, 178, 25, 0.3);
+}
+
+.nav-badge--critical {
+  background: rgba(208, 59, 59, 0.15);
+  color: #f87171;
+  border-color: rgba(208, 59, 59, 0.3);
+}
+
+/* --------------------------------------------------------------------------
+   Next Action card
+   -------------------------------------------------------------------------- */
+
+.next-action {
+  margin: var(--sp-3);
+  padding: var(--sp-3);
+  background: var(--bg-raised);
+  border: 1px solid var(--border);
+  border-radius: var(--r-md);
+}
+
+.next-action--warn {
+  border-color: rgba(250, 178, 25, 0.3);
+  background: rgba(250, 178, 25, 0.06);
+}
+
+.next-action--critical {
+  border-color: rgba(208, 59, 59, 0.3);
+  background: rgba(208, 59, 59, 0.06);
+}
+
+.next-action--good {
+  border-color: rgba(12, 163, 12, 0.25);
+  background: rgba(12, 163, 12, 0.05);
+}
+
+.next-action__hd {
+  display: flex;
+  align-items: center;
+  gap: var(--sp-2);
+  font-size: var(--fs-xs);
+  font-weight: 700;
+  letter-spacing: 0.07em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  margin-bottom: var(--sp-2);
+}
+
+.next-action--warn  .next-action__hd { color: var(--status-warning-ink); }
+.next-action--critical .next-action__hd { color: #f87171; }
+.next-action--good  .next-action__hd { color: var(--status-good-ink); }
+
+.next-action__text {
+  font-size: var(--fs-xs);
+  color: var(--text-secondary);
+  margin-bottom: var(--sp-2);
+  line-height: 1.4;
+}
+
+.next-action__cta {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--sp-1);
+  padding: 4px var(--sp-3);
+  font-size: var(--fs-xs);
+  font-weight: 600;
+  color: var(--accent-ink);
+  background: var(--accent-wash);
+  border-radius: var(--r-sm);
+  transition: background 0.12s, color 0.12s;
+}
+
+.next-action__cta:hover {
+  background: rgba(99, 102, 241, 0.2);
+  color: #fff;
+}
+
+/* --------------------------------------------------------------------------
+   Sidebar scroll container override
+   -------------------------------------------------------------------------- */
+
+/* Tighten the scroll area top padding — workspace header handles its own spacing */
+#sidebar .sidebar__scroll {
+  padding-top: var(--sp-2);
+}
+
+/* Separate project-progress from upload button */
+#sidebar-progress {
+  margin-bottom: var(--sp-1);
+}
+
+/* Next action sits at the bottom of the scroll area */
+#sidebar-next-action {
+  margin-top: auto;
+}
+
+/* --------------------------------------------------------------------------
+   Upload button — slightly smaller to make room for new sections
+   -------------------------------------------------------------------------- */
+
+/* Keep the existing .btn-upload styles; just reduce bottom margin */
+#sidebar .btn-upload {
+  margin-bottom: var(--sp-3);
+}
+
+/* --------------------------------------------------------------------------
+   Responsive: auto-minimize below 1280px if sidebar takes too much room
+   -------------------------------------------------------------------------- */
+
+@media (max-width: 1280px) {
+  :root { --sidebar-w: 220px; }
+}
+
+@media (max-width: 1024px) {
+  .sidebar:not([data-open="true"]) .ws-project-sub,
+  .sidebar:not([data-open="true"]) .ws-run-row {
+    display: none;
+  }
+}
